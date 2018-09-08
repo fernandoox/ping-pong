@@ -1,10 +1,5 @@
 class HomeController < ApplicationController
   def index
-  end
-
-  def history
-  end
-
-  def log
+    @users = User.all.order(historical_score: :desc)
   end
 end

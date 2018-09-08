@@ -1,0 +1,32 @@
+<h1>Games#index</h1>
+<p>Find me in app/views/games/index.html.erb</p>
+
+<table class="table table-bordered table-striped table-hover">
+   <thead>
+      <tr>
+         <th>Date played</th>
+         <th>Opponent</th>
+         <th>Score</th>
+         <th>Result</th>
+      </tr>
+   </thead>
+   <tbody>
+      <% @games.each do |game| %>
+      <tr>
+         <td>
+            <%=game.date_played%>
+         </td>
+         <td>
+            <%=game.opponent.email%>
+         </td>
+         <td>
+            <%=game.user_score%> -
+            <%=game.opponent_score%>
+         </td>
+         <td>
+            <%=(game.user_score > game.opponent_score) ? "W" : "L"%>
+         </td>
+      </tr>
+      <%end%>
+   </tbody>
+</table>

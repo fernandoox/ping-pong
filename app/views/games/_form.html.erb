@@ -1,0 +1,35 @@
+<%= form_for @game do |f| %>
+   <%@game.errors.full_messages.each do |message|%>
+   <div class="alert alert-danger" style="padding: 7px !important">
+      <%=message%>
+   </div>
+   <%end%>
+   <div class="form-group">
+      <label for="date_played" class="">Date playeddd:</label>
+      <div class="row">
+         <div class="col-md-3" style='display: inline-flex; width: 100%;'>
+            <%= f.date_select :date_played, {}, {id:'date_played', class: 'form-control'} %>
+         </div>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <label for="opponent_id">Opponent:</label>
+      <%= collection_select(:game, :opponent_id, @opponents, :id, :email, {prompt:'Select an opponent'}, {id:'opponent_id', class: "form-control"}) %>
+   </div>
+
+   <div class="form-group">
+      <label for="user_score">Your score:</label>
+      <%= f.text_field :user_score, id:'user_score', placeholder:'Enter user score', class:'form-control'%>
+   </div>
+
+   <div class="form-group">
+      <label for="opponent_score">Their score:</label>
+      <%= f.text_field :opponent_score, id:'opponent_score', placeholder:'Enter opponent score', class:'form-control'%>
+   </div>
+
+   <div class="form-group">
+      <%= f.submit "Log game!", class:'btn btn-success' %>
+      <%= button_tag "Cancel", type: :reset, class:'btn btn-default' %>
+   </div>
+<% end %>
